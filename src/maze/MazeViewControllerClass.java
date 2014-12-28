@@ -8,7 +8,7 @@ public class MazeViewControllerClass implements MazeViewController {
 	@Override
 	public void calculateShortestPath() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class MazeViewControllerClass implements MazeViewController {
 	@Override
 	public void saveMazeAs(String arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

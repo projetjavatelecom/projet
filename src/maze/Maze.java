@@ -1,4 +1,8 @@
 package maze;
+
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,8 +12,11 @@ import java.util.ArrayList;
 
 import dijkstra.GraphInterface;
 import dijkstra.VertexInterface;
+import fr.enst.inf103.ui.MazeView;
+import fr.enst.inf103.ui.MazeViewController;
+import fr.enst.inf103.ui.MazeViewSource;
 
-public class Maze implements GraphInterface {
+public class Maze implements GraphInterface, MazeViewSource {
 	public static final int WIDTH = 10;
 	public static final int HEIGHT = 10;
 
@@ -32,42 +39,41 @@ public class Maze implements GraphInterface {
 				allVertices.add(theLine[column]);
 		}
 		return allVertices;
-
 	}
 
 	public ArrayList<VertexInterface> getSuccessors(VertexInterface vertex) {
 		ArrayList<VertexInterface> successors = new ArrayList<VertexInterface>();
 
-		MBox box = (MBox) vertex; // cast
+		MBox box = (MBox) vertex;
 
 		int line = box.getLine();
 		int column = box.getColumn();
 
-		if (line > 0) {// voisin du haut
+		if (line > 0) {
 			MBox neighbor = boxes[line - 1][column];
 			if (neighbor.isAccessible())
 				successors.add(neighbor);
 		}
-
-		if (line < HEIGHT) {// voisin du bas
+		if (line < HEIGHT - 1) {
 			MBox neighbor = boxes[line + 1][column];
 			if (neighbor.isAccessible())
 				successors.add(neighbor);
 		}
 
-		if (column > 0) {// voisin de gauche
+		if (column > 0) {
 			MBox neighbor = boxes[line][column - 1];
 			if (neighbor.isAccessible())
 				successors.add(neighbor);
 		}
 
-		if (column < WIDTH) {// voisin de droite
+		if (column < WIDTH - 1) {
 			MBox neighbor = boxes[line][column + 1];
 			if (neighbor.isAccessible())
 				successors.add(neighbor);
 		}
 
 		return successors;
+
 	}
 
 	public final int getWeight(VertexInterface src, VertexInterface dst) {
@@ -79,20 +85,22 @@ public class Maze implements GraphInterface {
 		BufferedReader br = null;
 
 		try {
+
 			fr = new FileReader(fileName);
 			br = new BufferedReader(fr);
 
 			for (int lineNo = 0; lineNo < HEIGHT; lineNo++) {
 				String line = br.readLine();
+
 				if (line == null)
 					throw new MazeReadingException(fileName, lineNo,
-							"pas assez de lignes");
+							"not enough lines");
 				if (line.length() < WIDTH)
 					throw new MazeReadingException(fileName, lineNo,
-							"ligne trop courte");
+							"line too short");
 				if (line.length() > WIDTH)
 					throw new MazeReadingException(fileName, lineNo,
-							"ligne trop longue");
+							"line too long");
 
 				for (int colNo = 0; colNo < WIDTH; colNo++) {
 					switch (line.charAt(colNo)) {
@@ -108,44 +116,55 @@ public class Maze implements GraphInterface {
 					case 'E':
 						boxes[lineNo][colNo] = new EBox(this, lineNo, colNo);
 						break;
+
 					default:
 						throw new MazeReadingException(fileName, lineNo,
-								"unknown char'" + boxes[lineNo][colNo] + "'");
+								"unknown char '" + boxes[lineNo][colNo] + "'");
 					}
 				}
 			}
 
 		} catch (MazeReadingException e) {
 			System.err.println(e.getMessage());
-		} catch (FileNotFoundException e) {
+		}
+
+		catch (FileNotFoundException e) {
 			System.err
-					.println("Erreur classe Maze, initFromTextFile: fichier non trouvé\""
+					.println("Error class Maze, initFromTextFile: file not found\""
 							+ fileName + "\"");
-		} catch (IOException e) {
+		}
+
+		catch (IOException e) {
 			System.err
-					.println("Erreur classe Maze, initFromTextFile: erreur de lecture du fichier\""
+					.println("Error class Maze, initFromTextFile: read error on file \""
 							+ fileName + "\"");
-		} catch (Exception e) {
-			System.err.println("Erreur: erreur inconnue");
+		}
+
+		catch (Exception e) {
+			System.err.println("Error: unknown error.");
 			e.printStackTrace(System.err);
-		} finally {
+		}
+
+		finally {
 			if (fr != null)
 				try {
 					fr.close();
 				} catch (Exception e) {
 				}
 			;
-
 			if (br != null)
 				try {
 					br.close();
 				} catch (Exception e) {
 				}
 			;
+
 		}
+
 	}
 
 	public final void saveToTextFile(String fileName) {
+
 		PrintWriter pw = null;
 
 		try {
@@ -153,21 +172,26 @@ public class Maze implements GraphInterface {
 
 			for (int lineNo = 0; lineNo < HEIGHT; lineNo++) {
 				MBox[] line = boxes[lineNo];
-				for (int colNo = 0; colNo < WIDTH; colNo++) {
+				for (int colNo = 0; colNo < WIDTH; colNo++)
 					line[colNo].writeCharTo(pw);
-				}
-					pw.println();
+				pw.println();
 			}
-		} catch (FileNotFoundException e) {
+		}
+
+		catch (FileNotFoundException e) {
 			System.err
-					.println("Erreur classe Maze, saveToTextFile: fichier non trouvé\""
+					.println("Error class Maze, saveToTextFile: file not found\""
 							+ fileName + "\"");
-		} catch (SecurityException e) {
+		}
+
+		catch (IOException e) {
 			System.err
-					.println("Erreur classe Maze, saveToTextFile: exception de sécurité\""
+					.println("Error class Maze, saveToTextFile: security exception \""
 							+ fileName + "\"");
-		} catch (Exception e) {
-			System.err.println("Erreur: erreur inconnue");
+		}
+
+		catch (Exception e) {
+			System.err.println("Error: unknown error.");
 			e.printStackTrace(System.err);
 		} finally {
 			if (pw != null)
@@ -175,7 +199,71 @@ public class Maze implements GraphInterface {
 					pw.close();
 				} catch (Exception e) {
 				}
+			;
 		}
 
 	}
+
+	@Override
+	public boolean drawMaze(Graphics g, MazeView mazeView) {
+
+		return false;
+	}
+
+	@Override
+	public int getHeight() {
+		return HEIGHT;
+	}
+
+	@Override
+	public String getSymbolForBox(int line, int column) {
+		if (boxes[line][column] != null) {
+			return boxes[line][column].afficherLettre();
+		}
+		;
+		return "";
+
+	}
+
+	@Override
+	public int getWidth() {
+		return WIDTH;
+	}
+
+	@Override
+	public boolean handleClick(MouseEvent e, MazeView mazeView) {
+		return false;
+	}
+
+	@Override
+	public boolean handleKey(KeyEvent e, MazeView mazeView) {
+
+		return false;
+	}
+
+	@Override
+	public void setSymbolForBox(int line, int column, String symbol) {
+		try {
+			if (symbol.equals("A")) {
+				boxes[line][column] = new ABox(this, line, column);
+			}
+			if (symbol.equals("D")) {
+				boxes[line][column] = new Dbox(this, line, column);
+			}
+			if (symbol.equals("E")) {
+				boxes[line][column] = new EBox(this, line, column);
+			}
+			if (symbol.equals("W")) {
+				boxes[line][column] = new WBox(this, line, column);
+			}
+		}
+
+		catch (Exception e) {
+			System.out.println("symbol is unknown"); // le symbol ne represente
+														// aucune lettre
+														// predefini
+		}
+
+	}
+
 }

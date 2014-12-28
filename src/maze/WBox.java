@@ -1,22 +1,25 @@
 package maze;
+
 import java.io.PrintWriter;
 
+public class WBox extends MBox {
 
-public class WBox extends MBox{
-
-	public WBox(Maze maze, int line, int column)
-	{
-		super(maze , line, column);
+	public WBox(Maze maze, int line, int column) {
+		super(maze, line, column);
 		// TODO Auto-generated constructor stub
 	}
+
+	public String afficherLettre() {
+		return "W";
+	}
+
+	// Ajout d'une méthode pour afficher la lettre associée
 	@Override
-	public final boolean isAccessible()
-	{
+	public final boolean isAccessible() {
 		return false;
 	}
-	
-	public final void writeCharTo(PrintWriter pw)
-	{
+
+	public final void writeCharTo(PrintWriter pw) {
 		pw.print('W');
 	}
 
