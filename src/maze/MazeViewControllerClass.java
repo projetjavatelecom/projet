@@ -4,35 +4,40 @@ import fr.enst.inf103.ui.MazeViewController;
 import fr.enst.inf103.ui.MazeViewSource;
 
 public class MazeViewControllerClass implements MazeViewController {
+	// creation d'une nouvelle classe qui implemente MazeViewController
+	private Maze maze = new Maze(); // creation d'un nouveau labyrinthe
+	
+	
+	
+	
 
 	@Override
 	public void calculateShortestPath() {
-		// TODO Auto-generated method stub
-
-	}
+		}
 
 	@Override
 	public MazeViewSource getMazeViewSource() {
-		// TODO Auto-generated method stub
-		return null;
+		return maze;
 	}
 
 	@Override
 	public MazeViewSource newMaze() {
-		// TODO Auto-generated method stub
-		return null;
+		return maze ; 
 	}
 
 	@Override
-	public MazeViewSource openMaze(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public MazeViewSource openMaze(String fileName) {
+		maze.initFromTextFile(fileName); // on ouvre le labyrinthe a partir d'un fichier texte ou d'un labyrinthe deja enregistre
+		return maze;
+		
+		
+	
 	}
 
 	@Override
-	public void saveMazeAs(String arg0) {
-		// TODO Auto-generated method stub
-
+	public void saveMazeAs(String fileName) {
+	     maze.saveToTextFile(fileName); // sauvegarde du labyrinthe
+		
 	}
 
 }
