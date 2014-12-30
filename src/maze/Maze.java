@@ -17,8 +17,16 @@ import fr.enst.inf103.ui.MazeViewController;
 import fr.enst.inf103.ui.MazeViewSource;
 
 public class Maze implements GraphInterface, MazeViewSource {
-	public static final int WIDTH = 10;
-	public static final int HEIGHT = 10;
+	public static  int WIDTH = 10;
+	public static  int HEIGHT = 10;
+	
+	public void setWIDTH (int newWIDTH) {
+		WIDTH = newWIDTH ;
+	}
+	
+	public void setHEIGHT (int newHEIGHT) {
+		HEIGHT = newHEIGHT; 
+	}
 
 	private final MBox[][] boxes;
 
