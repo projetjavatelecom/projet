@@ -22,6 +22,7 @@ public class MazeViewControllerClass implements MazeViewController {
 
 	@Override
 	public MazeViewSource newMaze() {
+		maze.initialize();
 		return maze ; 
 	}
 

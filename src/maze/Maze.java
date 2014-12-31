@@ -273,5 +273,15 @@ public class Maze implements GraphInterface, MazeViewSource {
 		}
 
 	}
+	// methode qui permet d'initialiser un nouveau labyrinthe 
+	
+	public void initialize() {
+		for (int i=0;i<HEIGHT;i++) {
+			for (int j=0;j<WIDTH; j++) {
+				boxes[i][j] = new EBox(this,i,j); 
+			} } 
+	}
+
+	
 
 }
