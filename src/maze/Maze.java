@@ -252,24 +252,28 @@ public class Maze implements GraphInterface, MazeViewSource {
 	@Override
 	public void setSymbolForBox(int line, int column, String symbol) {
 		try {
-			if (symbol.equals("A")) {
+			switch(symbol)
+			{
+			case "A" :
 				boxes[line][column] = new ABox(this, line, column);
-			}
-			if (symbol.equals("D")) {
+				break;
+			case "D" :
 				boxes[line][column] = new Dbox(this, line, column);
-			}
-			if (symbol.equals("E")) {
+				break;
+			case "E" :
 				boxes[line][column] = new EBox(this, line, column);
-			}
-			if (symbol.equals("W")) {
+				break;
+			case "W" :
 				boxes[line][column] = new WBox(this, line, column);
-			}
-		}
+				break;
+			default :
+				throw new Exception(symbol + " is an unknown symbol") ;
+			
+		    }
+		    }
 
 		catch (Exception e) {
-			System.out.println("symbol is unknown"); // le symbol ne represente
-														// aucune lettre
-														// predefini
+			System.out.println(e); // 
 		}
 
 	}
