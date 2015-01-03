@@ -20,11 +20,13 @@ public class Maze implements GraphInterface, MazeViewSource {
 	public static  int WIDTH = 10;
 	public static  int HEIGHT = 10;
 	
-	public void setWIDTH (int newWIDTH) {
+	public void setWIDTH (int newWIDTH) throws WIDTHException {
+		if(newWIDTH <= 0) throw new WIDTHException("WIDTH is undefined "); // largeur non permise, message d'erreur
 		WIDTH = newWIDTH ;
 	}
 	
-	public void setHEIGHT (int newHEIGHT) {
+	public void setHEIGHT (int newHEIGHT) throws HEIGHTException {
+		if(newHEIGHT <= 0) throw new HEIGHTException("HEIGHT is undefined") ; // hauteur non permise, message d'erreur
 		HEIGHT = newHEIGHT; 
 	}
 

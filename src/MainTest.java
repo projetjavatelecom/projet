@@ -2,15 +2,17 @@ import java.util.Scanner;
 
 import fr.enst.inf103.ui.MazeViewController;
 import fr.enst.inf103.ui.MazeWindow;
+import maze.HEIGHTException;
 import maze.Maze;
 import maze.MazeViewControllerClass;
+import maze.WIDTHException;
 
 
 public class MainTest {
 
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws WIDTHException, HEIGHTException {
 		
         Maze maze = new Maze() ; 
 		
