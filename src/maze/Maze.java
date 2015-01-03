@@ -267,13 +267,14 @@ public class Maze implements GraphInterface, MazeViewSource {
 				boxes[line][column] = new WBox(this, line, column);
 				break;
 			default :
-				throw new Exception(symbol + " is an unknown symbol") ;
+				throw new SymbolException(symbol + " is an unknown symbol") ;
 			
 		    }
 		    }
 
 		catch (Exception e) {
-			System.out.println(e); // 
+			System.out.println(e); 
+			e.printStackTrace(); 
 		}
 
 	}

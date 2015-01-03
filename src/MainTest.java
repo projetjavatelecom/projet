@@ -8,9 +8,11 @@ import maze.MazeViewControllerClass;
 
 public class MainTest {
 
+	
+
 	public static void main(String[] args) {
 		
-Maze maze = new Maze() ; 
+        Maze maze = new Maze() ; 
 		
         Scanner sc = new Scanner(System.in) ; 
 		System.out.println("Saisissez la largeur du labyrinthe") ; // il faut saisir la largeur dans la console
@@ -25,6 +27,9 @@ Maze maze = new Maze() ;
 		
 		MazeViewController mazeController= new MazeViewControllerClass();
 		MazeWindow mazeWindow = new MazeWindow("My awesome labyrinth", mazeController) ;
+		
+		
+		
 
 	}
 
