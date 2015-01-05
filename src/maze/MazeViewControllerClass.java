@@ -1,5 +1,10 @@
 package maze;
 
+import java.util.ArrayList;
+
+import dijkstra.Dijkstra;
+import dijkstra.PreviousInterface;
+import dijkstra.VertexInterface;
 import fr.enst.inf103.ui.MazeViewController;
 import fr.enst.inf103.ui.MazeViewSource;
 
@@ -13,6 +18,15 @@ public class MazeViewControllerClass implements MazeViewController {
 
 	@Override
 	public void calculateShortestPath() {
+		// On détermine le point de départ du labyrinthe
+		VertexInterface r= Dijkstra.determinateDeparture(maze); 
+		
+		//On détermine le point d'arrivée du labyrinthe
+		VertexInterface a=Dijkstra.determinateArrival(maze);
+		// On lance l'algorithme de Dijkstra pour récuperer le previous
+		PreviousInterface previous = Dijkstra.dijkstra(maze,r);
+		// On détermine le chemin entre le départ et l'arrivée
+		ArrayList<VertexInterface> chemin=previous.getShortestPathTo(a);
 		}
 
 	@Override

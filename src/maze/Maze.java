@@ -289,6 +289,4 @@ public class Maze implements GraphInterface, MazeViewSource {
 			} } 
 	}
 
-	
-
 }
