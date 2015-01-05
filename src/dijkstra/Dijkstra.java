@@ -2,7 +2,30 @@ package dijkstra;
 
 import java.util.ArrayList;
 
+import maze.ABox;
+import maze.Maze;
+
 public class Dijkstra {
+	
+	// Méthode qui permet de déterminer le point de départ du labyrinthe
+		public VertexInterface determinateDeparture(Maze maze){
+			Boolean test= false;
+			int i=-1;
+			int j =-1;
+			int WIDTH= maze.getWidth();
+			int HEIGHT=maze.getHeight();
+			while (i<WIDTH && test ==false){
+				i=i+1;
+				while (j<HEIGHT && test==false){
+					j=j+1;
+					if (maze.getSymbolForBox(i,j)=="A"){
+						test=true;
+					}
+				}
+			}
+			VertexInterface r = new ABox(maze, i, j);
+			return (r);
+		}
 
 	public static PreviousInterface dijkstra(GraphInterface g, VertexInterface r) {
 		return dijkstra(g, r, new ASet(), new Pi(), new Previous());
