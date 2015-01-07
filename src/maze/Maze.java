@@ -268,11 +268,14 @@ public class Maze implements GraphInterface, MazeViewSource {
 			case "W" :
 				boxes[line][column] = new WBox(this, line, column);
 				break;
+			case"*":
+				boxes[line][column]= new CBox(this,line,column);
+				break;
 			default :
 				throw new SymbolException(symbol + " is an unknown symbol") ;
 			
 		    }
-		    }
+		}
 
 		catch (Exception e) {
 			System.out.println(e); 
@@ -298,11 +301,11 @@ public class Maze implements GraphInterface, MazeViewSource {
 		int j=-1;
 		
 		
-		while (i<WIDTH && test==false ){
+		while (i<WIDTH-1 && test==false ){
 			i=i+1;
-			while( j<HEIGHT && test==false){
+			while( j<HEIGHT-1 && test==false){
 				j=j+1;
-				if (boxes[i][j].afficherLettre()=="D"){
+				if (getSymbolForBox(i,j)=="D"){
 						test = true;
 				}
 			}
@@ -317,11 +320,11 @@ public class Maze implements GraphInterface, MazeViewSource {
 		int j=-1;
 		
 		
-		while (i<WIDTH && test==false ){
+		while (i<WIDTH-1 && test==false ){
 			i=i+1;
-			while( j<HEIGHT && test==false){
+			while( j<HEIGHT-1 && test==false){
 				j=j+1;
-				if (boxes[i][j].afficherLettre()=="A"){
+				if (getSymbolForBox(i,j)=="A"){
 						test = true;
 				}
 			}
