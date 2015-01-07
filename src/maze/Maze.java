@@ -288,6 +288,8 @@ public class Maze implements GraphInterface, MazeViewSource {
 				boxes[i][j] = new EBox(this,i,j); 
 			} } 
 	}
+	
+	//Ajout de deux méthodes une pour calculer le point de depart d'un maze et la seconde pour le point d'arrivée
 
 	
 
