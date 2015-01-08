@@ -283,13 +283,20 @@ public class Maze implements GraphInterface, MazeViewSource {
 		}
 
 	}
-	// methode qui permet d'initialiser un nouveau labyrinthe 
+	// methode qui permet d'initialiser un nouveau labyrinthe avec des murs sur tous les bords
 	
 	public void initialize() {
 		for (int i=0;i<HEIGHT;i++) {
 			for (int j=0;j<WIDTH; j++) {
+				boxes[i][j] = new WBox(this,i,j); 
+			} } 
+		for (int i=1;i<HEIGHT-1;i++) {
+			for (int j=1;j<WIDTH-1; j++) {
 				boxes[i][j] = new EBox(this,i,j); 
 			} } 
+		
+		
+		
 	}
 	
 	//Ajout de deux m�thodes une pour calculer le point de depart d'un maze et la seconde pour le point d'arriv�e
