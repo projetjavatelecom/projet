@@ -7,31 +7,32 @@ import maze.Maze;
 import maze.MazeViewControllerClass;
 import maze.WIDTHException;
 
-
 public class MainTest {
 
-	
+	public static void main(String[] args) throws WIDTHException,
+			HEIGHTException {
 
-	public static void main(String[] args) throws WIDTHException, HEIGHTException {
-		
-        Maze maze = new Maze() ; 
-		
-        Scanner sc = new Scanner(System.in) ; 
-		System.out.println("Saisissez la largeur du labyrinthe") ; // il faut saisir la largeur dans la console
+		Maze maze = new Maze();
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisissez la largeur du labyrinthe"); // il faut
+																	// saisir la
+																	// largeur
+																	// dans la
+																	// console
 		int largeur = sc.nextInt();
-		maze.setWIDTH(largeur); 
-		System.out.println("Saisissez la hauteur du labyrinthe") ; // il faut saisir la hauteur dans la console
+		maze.setWIDTH(largeur);
+		System.out.println("Saisissez la hauteur du labyrinthe"); // il faut
+																	// saisir la
+																	// hauteur
+																	// dans la
+																	// console
 		int hauteur = sc.nextInt();
 		maze.setHEIGHT(hauteur);
-		
-		
-		
-		
-		MazeViewController mazeController= new MazeViewControllerClass();
-		MazeWindow mazeWindow = new MazeWindow("My awesome labyrinth", mazeController) ;
-		
-		
-		
+
+		MazeViewController mazeController = new MazeViewControllerClass();
+		MazeWindow mazeWindow = new MazeWindow("My awesome labyrinth",
+				mazeController);
 
 	}
 

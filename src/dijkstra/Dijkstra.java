@@ -7,6 +7,7 @@ public class Dijkstra {
 	public static PreviousInterface dijkstra(GraphInterface g, VertexInterface r) {
 		return dijkstra(g, r, new ASet(), new Pi(), new Previous());
 	}
+
 	private static PreviousInterface dijkstra(GraphInterface g,
 			VertexInterface r, AsetInterface a, PiInterface pi,
 			PreviousInterface previous) {
@@ -50,6 +51,5 @@ public class Dijkstra {
 		}
 		return previous;
 	}
-
 
 }

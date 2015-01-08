@@ -17,17 +17,25 @@ import fr.enst.inf103.ui.MazeViewController;
 import fr.enst.inf103.ui.MazeViewSource;
 
 public class Maze implements GraphInterface, MazeViewSource {
-	public static  int WIDTH = 10;
-	public static  int HEIGHT = 10;
-	
-	public void setWIDTH (int newWIDTH) throws WIDTHException {
-		if(newWIDTH <= 0) throw new WIDTHException("WIDTH is undefined "); // largeur non permise, message d'erreur
-		WIDTH = newWIDTH ;
+	public static int WIDTH = 10;
+	public static int HEIGHT = 10;
+
+	public void setWIDTH(int newWIDTH) throws WIDTHException {
+		if (newWIDTH <= 0)
+			throw new WIDTHException("WIDTH is undefined "); // largeur non
+																// permise,
+																// message
+																// d'erreur
+		WIDTH = newWIDTH;
 	}
-	
-	public void setHEIGHT (int newHEIGHT) throws HEIGHTException {
-		if(newHEIGHT <= 0) throw new HEIGHTException("HEIGHT is undefined") ; // hauteur non permise, message d'erreur
-		HEIGHT = newHEIGHT; 
+
+	public void setHEIGHT(int newHEIGHT) throws HEIGHTException {
+		if (newHEIGHT <= 0)
+			throw new HEIGHTException("HEIGHT is undefined"); // hauteur non
+																// permise,
+																// message
+																// d'erreur
+		HEIGHT = newHEIGHT;
 	}
 
 	private final MBox[][] boxes;
@@ -254,80 +262,81 @@ public class Maze implements GraphInterface, MazeViewSource {
 	@Override
 	public void setSymbolForBox(int line, int column, String symbol) {
 		try {
-			switch(symbol)
-			{
-			case "A" :
+			switch (symbol) {
+			case "A":
 				boxes[line][column] = new ABox(this, line, column);
 				break;
-			case "D" :
+			case "D":
 				boxes[line][column] = new Dbox(this, line, column);
 				break;
-			case "E" :
+			case "E":
 				boxes[line][column] = new EBox(this, line, column);
 				break;
-			case "W" :
+			case "W":
 				boxes[line][column] = new WBox(this, line, column);
 				break;
-			case"*":
-				boxes[line][column]= new CBox(this,line,column);
+			case "*":
+				boxes[line][column] = new CBox(this, line, column);
 				break;
-			default :
-				throw new SymbolException(symbol + " is an unknown symbol") ;
-			
-		    }
+			default:
+				throw new SymbolException(symbol + " is an unknown symbol");
+
+			}
 		}
 
 		catch (Exception e) {
-			System.out.println(e); 
-			e.printStackTrace(); 
+			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}
-	// methode qui permet d'initialiser un nouveau labyrinthe avec des murs sur tous les bords
-	
+
+	// methode qui permet d'initialiser un nouveau labyrinthe avec des murs sur
+	// tous les bords
+
 	public void initialize() {
-		for (int i=0;i<HEIGHT;i++) {
-			for (int j=0;j<WIDTH; j++) {
-				boxes[i][j] = new WBox(this,i,j); 
-			} } 
-		for (int i=1;i<HEIGHT-1;i++) {
-			for (int j=1;j<WIDTH-1; j++) {
-				boxes[i][j] = new EBox(this,i,j); 
-			} } 
-		
-		
-		
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
+				boxes[i][j] = new WBox(this, i, j);
+			}
+		}
+		for (int i = 1; i < HEIGHT - 1; i++) {
+			for (int j = 1; j < WIDTH - 1; j++) {
+				boxes[i][j] = new EBox(this, i, j);
+			}
+		}
+
 	}
-	
-	//Ajout de deux methodes une pour calculer le point de depart d'un maze et la seconde pour le point d'arrivee
+
+	// Ajout de deux methodes une pour calculer le point de depart d'un maze et
+	// la seconde pour le point d'arrivee
 
 	public final Dbox determinateDeparture() {
-		Dbox depart=null;
-		
-		for (int i=0;i<HEIGHT;i++){
-			for (int j=0;j<WIDTH;j++){
-				if (boxes[i][j].afficherLettre().equals("D")){
-						depart = (Dbox) boxes[i][j];
+		Dbox depart = null;
+
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
+				if (boxes[i][j].afficherLettre().equals("D")) {
+					depart = (Dbox) boxes[i][j];
 				}
-				
+
 			}
 		}
-			return depart;
-		 
-		
+		return depart;
+
 	}
-	
-public final ABox determinateArrival() {
+
+	public final ABox determinateArrival() {
 		ABox arrivee = null;
 
-		for (int i=0;i<HEIGHT;i++){
-			for (int j=0;j<WIDTH;j++){
-				if (boxes[i][j].afficherLettre().equals("A")){
-						arrivee = (ABox) boxes[i][j];
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
+				if (boxes[i][j].afficherLettre().equals("A")) {
+					arrivee = (ABox) boxes[i][j];
 				}
-				
+
 			}
 		}
-			return arrivee;
+		return arrivee;
 	}
 }
