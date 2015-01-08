@@ -29,10 +29,13 @@ public class MazeViewControllerClass implements MazeViewController {
 			PreviousInterface previous = Dijkstra.dijkstra(maze, r);
 
 			// Maintenant on va chercher a determiner le chemin entre r et a
-
-			ArrayList<VertexInterface> shortestPath = previous
-					.getShortestPathTo(a);
-
+			
+			ArrayList<VertexInterface> shortestPath = previous.getShortestPathTo(a);
+			
+			if (shortestPath.size()==1){
+				throw new MazeException("Le départ et l'arrivée ne sont pas reliables !");
+			}
+			
 			for (VertexInterface vertex : shortestPath) {
 				MBox box = (MBox) vertex;
 
@@ -43,9 +46,7 @@ public class MazeViewControllerClass implements MazeViewController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
-
 	}
 
 	@Override
