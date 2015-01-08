@@ -311,31 +311,48 @@ public class Maze implements GraphInterface, MazeViewSource {
 	// Ajout de deux methodes une pour calculer le point de depart d'un maze et
 	// la seconde pour le point d'arrivee
 
-	public final Dbox determinateDeparture() {
+	public final Dbox determinateDeparture() throws MazeException {
 		Dbox depart = null;
+		int count = 0;
 
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
 				if (boxes[i][j].afficherLettre().equals("D")) {
 					depart = (Dbox) boxes[i][j];
+					count++;
+
 				}
 
 			}
+		}
+		if (count > 1) {
+			throw new MazeException("il y a plusieurs cases depart");
+		}
+		if (depart == null) {
+			throw new MazeException("pas de case depart");
 		}
 		return depart;
 
 	}
 
-	public final ABox determinateArrival() {
+	public final ABox determinateArrival() throws MazeException {
 		ABox arrivee = null;
+		int count = 0;
 
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
 				if (boxes[i][j].afficherLettre().equals("A")) {
 					arrivee = (ABox) boxes[i][j];
+					count++;
 				}
 
 			}
+		}
+		if (count > 1) {
+			throw new MazeException("il y a plusieurs cases arrivee");
+		}
+		if (arrivee == null) {
+			throw new MazeException("pas de case arrivee");
 		}
 		return arrivee;
 	}

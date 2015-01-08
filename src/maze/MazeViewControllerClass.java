@@ -18,35 +18,32 @@ public class MazeViewControllerClass implements MazeViewController {
 
 		// On recherche d'abord le point de depart et le point d'arrivee
 
-		VertexInterface r = maze.determinateDeparture();
-		VertexInterface a = maze.determinateArrival();
 		try {
-			if (r == null) {
-				throw new Exception("pas de depart");
-			}
-			if (a == null) {
-				throw new Exception("pas d'arrivee");
-			}
 
+			VertexInterface r = maze.determinateDeparture();
+
+			VertexInterface a = maze.determinateArrival();
+
+			// Ensuite on fait tourner dijikstra pour avoir le tableau previous
+
+			PreviousInterface previous = Dijkstra.dijkstra(maze, r);
+
+			// Maintenant on va chercher a determiner le chemin entre r et a
+
+			ArrayList<VertexInterface> shortestPath = previous
+					.getShortestPathTo(a);
+
+			for (VertexInterface vertex : shortestPath) {
+				MBox box = (MBox) vertex;
+
+				int i = box.getLine();
+				int j = box.getColumn();
+
+				maze.setSymbolForBox(i, j, "*");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
 
-		// Ensuite on fait tourner dijikstra pour avoir le tableau previous
-
-		PreviousInterface previous = Dijkstra.dijkstra(maze, r);
-
-		// Maintenant on va chercher a determiner le chemin entre r et a
-
-		ArrayList<VertexInterface> shortestPath = previous.getShortestPathTo(a);
-
-		for (VertexInterface vertex : shortestPath) {
-			MBox box = (MBox) vertex;
-
-			int i = box.getLine();
-			int j = box.getColumn();
-
-			maze.setSymbolForBox(i, j, "*");
 		}
 
 	}
