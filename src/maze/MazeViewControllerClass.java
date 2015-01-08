@@ -1,5 +1,7 @@
 package maze;
 
+import interfaceGraphique.Fenetre;
+
 import java.util.ArrayList;
 
 import dijkstra.Dijkstra;
@@ -33,6 +35,7 @@ public class MazeViewControllerClass implements MazeViewController {
 			ArrayList<VertexInterface> shortestPath = previous.getShortestPathTo(a);
 			
 			if (shortestPath.size()==1){
+				Fenetre fenetre = new Fenetre("Le départ et l'arrivée ne sont pas reliables !");
 				throw new MazeException("Le départ et l'arrivée ne sont pas reliables !");
 			}
 			
