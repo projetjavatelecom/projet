@@ -39,5 +39,4 @@ public abstract class MBox implements VertexInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
