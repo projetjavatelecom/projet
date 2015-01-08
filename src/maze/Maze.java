@@ -1,5 +1,7 @@
 package maze;
 
+import interfaceGraphique.Fenetre;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -326,10 +328,12 @@ public class Maze implements GraphInterface, MazeViewSource {
 			}
 		}
 		if (count > 1) {
-			throw new MazeException("il y a plusieurs cases depart");
+			Fenetre fenetre = new Fenetre("Il y a plusieurs cases de départ !");
+			throw new MazeException("Il y a plusieurs cases de départ");
 		}
 		if (depart == null) {
-			throw new MazeException("pas de case depart");
+			Fenetre fenetre = new Fenetre("Pas de case de départ !");
+			throw new MazeException("Pas de case de départ !");
 		}
 		return depart;
 
@@ -349,10 +353,12 @@ public class Maze implements GraphInterface, MazeViewSource {
 			}
 		}
 		if (count > 1) {
-			throw new MazeException("il y a plusieurs cases arrivee");
+			Fenetre fenetre = new Fenetre("Il y a plusieurs cases d'arrivée !");
+			throw new MazeException("Il y a plusieurs cases d'arrivée");
 		}
 		if (arrivee == null) {
-			throw new MazeException("pas de case arrivee");
+			Fenetre fenetre = new Fenetre("pas de case d'arrivée");
+			throw new MazeException("pas de case d'arrivée");
 		}
 		return arrivee;
 	}
