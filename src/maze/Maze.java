@@ -328,12 +328,12 @@ public class Maze implements GraphInterface, MazeViewSource {
 			}
 		}
 		if (count > 1) {
-			Fenetre fenetre = new Fenetre("Il y a plusieurs cases de départ !");
-			throw new MazeException("Il y a plusieurs cases de départ");
+			Fenetre fenetre = new Fenetre("Il y a plusieurs cases de depart !");
+			throw new MazeException("Il y a plusieurs cases de depart");
 		}
 		if (depart == null) {
-			Fenetre fenetre = new Fenetre("Pas de case de départ !");
-			throw new MazeException("Pas de case de départ !");
+			Fenetre fenetre = new Fenetre("Pas de case de depart !");
+			throw new MazeException("Pas de case de depart !");
 		}
 		return depart;
 
@@ -353,12 +353,12 @@ public class Maze implements GraphInterface, MazeViewSource {
 			}
 		}
 		if (count > 1) {
-			Fenetre fenetre = new Fenetre("Il y a plusieurs cases d'arrivée !");
-			throw new MazeException("Il y a plusieurs cases d'arrivée");
+			Fenetre fenetre = new Fenetre("Il y a plusieurs cases d'arrivee !");
+			throw new MazeException("Il y a plusieurs cases d'arrivee");
 		}
 		if (arrivee == null) {
-			Fenetre fenetre = new Fenetre("pas de case d'arrivée");
-			throw new MazeException("pas de case d'arrivée");
+			Fenetre fenetre = new Fenetre("pas de case d'arrivee");
+			throw new MazeException("pas de case d'arrivee");
 		}
 		return arrivee;
 	}
