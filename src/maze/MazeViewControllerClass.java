@@ -35,8 +35,8 @@ public class MazeViewControllerClass implements MazeViewController {
 			ArrayList<VertexInterface> shortestPath = previous.getShortestPathTo(a);
 			
 			if (shortestPath.size()==1){
-				Fenetre fenetre = new Fenetre("Le départ et l'arrivée ne sont pas reliables !");
-				throw new MazeException("Le départ et l'arrivée ne sont pas reliables !");
+				Fenetre fenetre = new Fenetre("Le depart et l'arrivee ne sont pas reliables !");
+				throw new MazeException("Le depart et l'arrivee ne sont pas reliables !");
 			}
 			
 			for (VertexInterface vertex : shortestPath) {

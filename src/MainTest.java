@@ -1,3 +1,5 @@
+import interfaceGraphique.Fenetre;
+
 import java.util.Scanner;
 
 import fr.enst.inf103.ui.MazeViewController;
@@ -13,6 +15,7 @@ public class MainTest {
 			HEIGHTException {
 
 		Maze maze = new Maze();
+		Fenetre fenetre = new Fenetre("Taper la hauteur et la largeur dans la console");
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Saisissez la largeur du labyrinthe"); // il faut

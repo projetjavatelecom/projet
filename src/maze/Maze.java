@@ -23,20 +23,18 @@ public class Maze implements GraphInterface, MazeViewSource {
 	public static int HEIGHT = 10;
 
 	public void setWIDTH(int newWIDTH) throws WIDTHException {
-		if (newWIDTH <= 0)
-			throw new WIDTHException("WIDTH is undefined "); // largeur non
-																// permise,
-																// message
-																// d'erreur
+		if (newWIDTH <= 0) {
+			Fenetre fenetre = new Fenetre("Largeur négative !"); // affiche une fenetre d'erreur 
+			throw new WIDTHException("WIDTH is undefined ");
+		}
 		WIDTH = newWIDTH;
 	}
 
 	public void setHEIGHT(int newHEIGHT) throws HEIGHTException {
-		if (newHEIGHT <= 0)
-			throw new HEIGHTException("HEIGHT is undefined"); // hauteur non
-																// permise,
-																// message
-																// d'erreur
+		if (newHEIGHT <= 0) {
+			Fenetre fenetre = new Fenetre("hauteur négative !"); // affiche une fenetre d'erreur
+			throw new HEIGHTException("HEIGHT is undefined");
+		}
 		HEIGHT = newHEIGHT;
 	}
 
@@ -310,8 +308,7 @@ public class Maze implements GraphInterface, MazeViewSource {
 
 	}
 
-	// Ajout de deux methodes une pour calculer le point de depart d'un maze et
-	// la seconde pour le point d'arrivee
+	// methode qui determine le depart du labyrinthe
 
 	public final Dbox determinateDeparture() throws MazeException {
 		Dbox depart = null;
@@ -338,8 +335,8 @@ public class Maze implements GraphInterface, MazeViewSource {
 		return depart;
 
 	}
-	
-	//methode qui determine l'arrivee
+
+	// methode qui determine l'arrivee
 
 	public final ABox determinateArrival() throws MazeException {
 		ABox arrivee = null;
@@ -354,6 +351,7 @@ public class Maze implements GraphInterface, MazeViewSource {
 
 			}
 		}
+		// traitement des exceptions
 		if (count > 1) {
 			Fenetre fenetre = new Fenetre("Il y a plusieurs cases d'arrivee !");
 			throw new MazeException("Il y a plusieurs cases d'arrivee");
