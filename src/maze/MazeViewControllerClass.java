@@ -31,14 +31,17 @@ public class MazeViewControllerClass implements MazeViewController {
 			PreviousInterface previous = Dijkstra.dijkstra(maze, r);
 
 			// Maintenant on va chercher a determiner le chemin entre r et a
-			
-			ArrayList<VertexInterface> shortestPath = previous.getShortestPathTo(a);
-			
-			if (shortestPath.size()==1){
-				Fenetre fenetre = new Fenetre("Le depart et l'arrivee ne sont pas reliables !");
-				throw new MazeException("Le depart et l'arrivee ne sont pas reliables !");
+
+			ArrayList<VertexInterface> shortestPath = previous
+					.getShortestPathTo(a);
+
+			if (shortestPath.size() == 1) {
+				Fenetre fenetre = new Fenetre(
+						"Le depart et l'arrivee ne sont pas reliables !");
+				throw new MazeException(
+						"Le depart et l'arrivee ne sont pas reliables !");
 			}
-			
+
 			for (VertexInterface vertex : shortestPath) {
 				MBox box = (MBox) vertex;
 

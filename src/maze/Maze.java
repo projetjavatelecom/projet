@@ -263,6 +263,8 @@ public class Maze implements GraphInterface, MazeViewSource {
 		return false;
 	}
 
+	// methode qui permet de modifier une case du labyrinthe 
+	// A:arrival , D:depart , E:empty , W:wall ; *:yellow box for the path in method calcultateShortestPath
 	@Override
 	public void setSymbolForBox(int line, int column, String symbol) {
 		try {
