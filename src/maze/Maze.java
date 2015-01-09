@@ -24,7 +24,9 @@ public class Maze implements GraphInterface, MazeViewSource {
 
 	public void setWIDTH(int newWIDTH) throws WIDTHException {
 		if (newWIDTH <= 0) {
-			Fenetre fenetre = new Fenetre("Largeur négative !"); // affiche une fenetre d'erreur 
+			Fenetre fenetre = new Fenetre("Largeur negative !"); // affiche une
+																	// fenetre
+																	// d'erreur
 			throw new WIDTHException("WIDTH is undefined ");
 		}
 		WIDTH = newWIDTH;
@@ -32,7 +34,9 @@ public class Maze implements GraphInterface, MazeViewSource {
 
 	public void setHEIGHT(int newHEIGHT) throws HEIGHTException {
 		if (newHEIGHT <= 0) {
-			Fenetre fenetre = new Fenetre("hauteur négative !"); // affiche une fenetre d'erreur
+			Fenetre fenetre = new Fenetre("hauteur négative !"); // affiche une
+																	// fenetre
+																	// d'erreur
 			throw new HEIGHTException("HEIGHT is undefined");
 		}
 		HEIGHT = newHEIGHT;

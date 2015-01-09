@@ -15,7 +15,6 @@ public class MainTest {
 			HEIGHTException {
 
 		Maze maze = new Maze();
-		Fenetre fenetre = new Fenetre("Taper la hauteur et la largeur dans la console");
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Saisissez la largeur du labyrinthe"); // il faut
