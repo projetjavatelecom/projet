@@ -338,6 +338,8 @@ public class Maze implements GraphInterface, MazeViewSource {
 		return depart;
 
 	}
+	
+	//methode qui determine l'arrivee
 
 	public final ABox determinateArrival() throws MazeException {
 		ABox arrivee = null;
